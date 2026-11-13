@@ -8,7 +8,7 @@ public class JFrameMain extends JFrame {
     
     public JFrameMain() {
         setTitle("Vista de conexión");
-        setSize(400, 300);
+        setSize(600, 300);
         setDefaultCloseOperation(JFrameMain.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
