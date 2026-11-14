@@ -45,7 +45,7 @@ public class JPanelForm extends JPanel {
 
         add(panelForm, BorderLayout.NORTH);
 
-        // Panel del área de resolución
+        // Panel del área de resolución (Asi ban los mensajes por si un error ocurre)
         txtAreaResolver = new JLabel("Resultado de la conexión:");
         txtAreaResolver.setForeground(Color.BLUE);
         txtAreaResolver.setHorizontalAlignment(SwingConstants.CENTER);
