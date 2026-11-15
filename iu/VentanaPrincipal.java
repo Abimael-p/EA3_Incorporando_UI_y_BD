@@ -1,8 +1,8 @@
-package EA3_Incorporando_IU_y_BD.iu;
+package iu;
 
-import EA3_Incorporando_IU_y_BD.iu.componentes.PanelConexion;
-import EA3_Incorporando_IU_y_BD.iu.componentes.PanelFormulario;
-import EA3_Incorporando_IU_y_BD.iu.componentes.PanelResultado;
+import iu.componentes.PanelConexion;
+import iu.componentes.PanelFormulario;
+import iu.componentes.PanelResultado;
 
 import javax.swing.*;
 import java.awt.*;

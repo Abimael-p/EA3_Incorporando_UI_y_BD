@@ -1,7 +1,7 @@
-package EA3_Incorporando_IU_y_BD.iu;
+package iu;
 
-import EA3_Incorporando_IU_y_BD.iu.componentes.PanelFormulario;
-import EA3_Incorporando_IU_y_BD.iu.componentes.PanelResultado;
+import iu.componentes.PanelFormulario;
+import iu.componentes.PanelResultado;
 import modelo.ConfiguracionBD;
 import modelo.ResultadoConexion;
 import servicio.ServicioConexionBD;

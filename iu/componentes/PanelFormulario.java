@@ -1,4 +1,4 @@
-package EA3_Incorporando_IU_y_BD.iu.componentes;
+package iu.componentes;
 
 import javax.swing.*;
 import java.awt.*;
