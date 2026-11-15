@@ -1,4 +1,4 @@
-package model;
+package modelo;
 
 /**
  * Modelo inmutable que representa el resultado de validar la conexión JDBC.

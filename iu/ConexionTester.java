@@ -1,24 +1,24 @@
-package EA3_Incorporando_UI_y_BD.iu;
+package EA3_Incorporando_IU_y_BD.iu;
 
-import EA3_Incorporando_UI_y_BD.iu.components.JPanelForm;
-import EA3_Incorporando_UI_y_BD.iu.components.JPanelResultado;
-import model.ConfiguracionBD;
-import model.ResultadoConexion;
-import service.ConexionBDService;
+import EA3_Incorporando_IU_y_BD.iu.componentes.PanelFormulario;
+import EA3_Incorporando_IU_y_BD.iu.componentes.PanelResultado;
+import modelo.ConfiguracionBD;
+import modelo.ResultadoConexion;
+import servicio.ServicioConexionBD;
 
 import javax.swing.SwingWorker;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 public class ConexionTester {
-    private final ConexionBDService servicio = new ConexionBDService();
-    private final JFrameMain ventana = new JFrameMain();
-    private final JPanelForm formulario = ventana.getFormulario();
-    private final JPanelResultado resultado = ventana.getResultado();
+    private final ServicioConexionBD servicio = new ServicioConexionBD();
+    private final VentanaPrincipal ventana = new VentanaPrincipal();
+    private final PanelFormulario formulario = ventana.obtenerFormulario();
+    private final PanelResultado resultado = ventana.obtenerResultado();
 
     public ConexionTester() {
-        formulario.addProbarConexionListener(evento -> probarConexion());
-        ventana.addDesconectarListener(evento -> ventana.mostrarFormulario());
+        formulario.registrarAccionProbarConexion(evento -> probarConexion());
+        ventana.registrarAccionDesconectar(evento -> ventana.mostrarFormulario());
     }
 
     public void mostrar() {
@@ -27,7 +27,7 @@ public class ConexionTester {
 
     private void probarConexion() {
         ConfiguracionBD configuracion = leerConfiguracion();
-        formulario.setCamposHabilitados(false);
+        formulario.habilitarCampos(false);
         resultado.mostrarPruebaEnCurso();
 
         new SwingWorker<ResultadoConexion, Void>() {
@@ -40,24 +40,24 @@ public class ConexionTester {
             protected void done() {
                 try {
                     mostrarResultado(get());
-                } catch (InterruptedException e) {
+                } catch (InterruptedException excepcion) {
                     Thread.currentThread().interrupt();
                     mostrarResultado(ResultadoConexion.error("Se interrumpió la prueba de conexión."));
-                } catch (ExecutionException e) {
-                    mostrarResultado(ResultadoConexion.error(e.getCause().toString()));
+                } catch (ExecutionException excepcion) {
+                    mostrarResultado(ResultadoConexion.error(excepcion.getCause().toString()));
                 } finally {
-                    formulario.setCamposHabilitados(true);
+                    formulario.habilitarCampos(true);
                 }
             }
         }.execute();
     }
 
     private ConfiguracionBD leerConfiguracion() {
-        char[] password = formulario.getPassword();
+        char[] contrasena = formulario.obtenerContrasena();
         try {
-            return new ConfiguracionBD(formulario.getUrl(), formulario.getUsuario(), new String(password));
+            return new ConfiguracionBD(formulario.obtenerUrl(), formulario.obtenerUsuario(), new String(contrasena));
         } finally {
-            Arrays.fill(password, '\0');
+            Arrays.fill(contrasena, '\0');
         }
     }
 
@@ -68,7 +68,7 @@ public class ConexionTester {
         }
         resultado.mostrarResultado(mensaje, prueba.exitosa());
         if (prueba.exitosa()) {
-            formulario.limpiarPassword();
+            formulario.limpiarContrasena();
             ventana.mostrarPanelConexion();
         }
     }

@@ -17,20 +17,20 @@ La aplicación prueba una conexión JDBC con la URL, el usuario y la contraseña
 
 ```text
 EA3_Incorporando_UI_y_BD/
-├── Main.java
+├── Principal.java
 ├── iu/
 │   ├── ConexionTester.java
-│   ├── JFrameMain.java
-│   └── components/
-│       ├── ButtonCircle.java
-│       ├── JPanelConection.java
-│       ├── JPanelForm.java
-│       └── JPanelResultado.java
-├── model/
+│   ├── VentanaPrincipal.java
+│   └── componentes/
+│       ├── BotonCircular.java
+│       ├── PanelConexion.java
+│       ├── PanelFormulario.java
+│       └── PanelResultado.java
+├── modelo/
 │   ├── ConfiguracionBD.java
 │   └── ResultadoConexion.java
-├── service/
-│   └── ConexionBDService.java
+├── servicio/
+│   └── ServicioConexionBD.java
 └── README.md
 ```
 
@@ -38,7 +38,7 @@ EA3_Incorporando_UI_y_BD/
 
 Requiere un JDK 17 o superior.
 
-Ejecuta los comandos desde la carpeta raíz del repositorio, donde está `Main.java`.
+Ejecuta los comandos desde la carpeta raíz del repositorio, donde está `Principal.java`.
 
 ### 1. Compilar
 
@@ -51,7 +51,7 @@ javac -encoding UTF-8 -d out (Get-ChildItem -Recurse -Filter *.java).FullName
 En macOS o Linux:
 
 ```bash
-javac -encoding UTF-8 -d out Main.java iu/*.java iu/components/*.java model/*.java service/*.java
+javac -encoding UTF-8 -d out Principal.java iu/*.java iu/componentes/*.java modelo/*.java servicio/*.java
 ```
 
 Este comando compila todos los archivos `.java` del proyecto y guarda los archivos compilados en la carpeta `out`.
@@ -63,13 +63,13 @@ Para probar con SQLite, guarda [el JAR de SQLite JDBC](https://github.com/xerial
 En Windows PowerShell:
 
 ```powershell
-java -cp "out;lib/*" EA3_Incorporando_UI_y_BD.Main
+java -cp "out;lib/*" EA3_Incorporando_IU_y_BD.Principal
 ```
 
 En macOS o Linux:
 
 ```bash
-java -cp "out:lib/*" EA3_Incorporando_UI_y_BD.Main
+java -cp "out:lib/*" EA3_Incorporando_IU_y_BD.Principal
 ```
 
 ### 3. Probar con SQLite

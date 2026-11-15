@@ -1,11 +1,11 @@
-package EA3_Incorporando_UI_y_BD.iu.components;
+package EA3_Incorporando_IU_y_BD.iu.componentes;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonCircle extends JButton {
+public class BotonCircular extends JButton {
 
-    public ButtonCircle(String texto) {
+    public BotonCircular(String texto) {
         super(texto);
 
         setContentAreaFilled(false);
@@ -15,24 +15,24 @@ public class ButtonCircle extends JButton {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
+    protected void paintComponent(Graphics graficos) {
+        Graphics2D graficos2D = (Graphics2D) graficos.create();
         // Habilitar el suavizado de bordes
-        g2.setRenderingHint(
+        graficos2D.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dibujar el fondo circular del botón
-        g2.setColor(getBackground());
-        g2.fillOval(0, 0, getWidth(), getHeight());
+        graficos2D.setColor(getBackground());
+        graficos2D.fillOval(0, 0, getWidth(), getHeight());
 
         // Dibujar el texto del botón
-        super.paintComponent(g);
+        super.paintComponent(graficos);
 
         // Borde del botón
-        g2.setColor(Color.GREEN);
-        g2.setStroke(new BasicStroke(2));
-        g2.drawOval(1, 1, getWidth() - 2, getHeight() - 2);
+        graficos2D.setColor(Color.GREEN);
+        graficos2D.setStroke(new BasicStroke(2));
+        graficos2D.drawOval(1, 1, getWidth() - 2, getHeight() - 2);
     }
 
     @Override
