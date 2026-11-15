@@ -4,26 +4,33 @@
 
 Aplicación de escritorio desarrollada en Java utilizando Swing, como parte de la actividad evaluativa EA3.
 
-El proyecto consiste en desarrollar una interfaz gráfica para gestionar la conexión con una base de datos. La interfaz contempla campos para introducir la URL de conexión, el nombre de usuario y la contraseña, además de controles para probar y desconectar la conexión.
+La aplicación prueba una conexión JDBC con la URL, el usuario y la contraseña del formulario. Muestra el éxito en verde o el fallo en rojo con el detalle técnico.
 
 ## Tecnologías utilizadas
 
 - Java (JDK 17 o superior).
 - Java Swing.
 - Java AWT.
-
-No utiliza frameworks ni dependencias externas.
+- JDBC y el controlador del motor que se quiera probar.
 
 ## Estructura del proyecto
 
 ```text
 EA3_Incorporando_UI_y_BD/
-│   ├── Main.java
-│   └── iu/
-│       ├── JFrameMain.java
-│       └── components/
-│           ├── JPanelForm.java
-│           └── JPanelConection.java
+├── Main.java
+├── iu/
+│   ├── ConexionTester.java
+│   ├── JFrameMain.java
+│   └── components/
+│       ├── ButtonCircle.java
+│       ├── JPanelConection.java
+│       ├── JPanelForm.java
+│       └── JPanelResultado.java
+├── model/
+│   ├── ConfiguracionBD.java
+│   └── ResultadoConexion.java
+├── service/
+│   └── ConexionBDService.java
 └── README.md
 ```
 
@@ -31,33 +38,40 @@ EA3_Incorporando_UI_y_BD/
 
 Requiere un JDK 17 o superior.
 
-Los siguientes comandos deben ejecutarse desde la carpeta raíz del proyecto, donde se encuentra la carpeta `EA3_Incorporando_UI_y_BD`.
+Ejecuta los comandos desde la carpeta raíz del repositorio, donde está `Main.java`.
 
 ### 1. Compilar
 
 En Windows PowerShell:
 
 ```powershell
-javac -d out (Get-ChildItem -Recurse -Filter *.java).FullName
+javac -encoding UTF-8 -d out (Get-ChildItem -Recurse -Filter *.java).FullName
+```
+
+En macOS o Linux:
+
+```bash
+javac -encoding UTF-8 -d out Main.java iu/*.java iu/components/*.java model/*.java service/*.java
 ```
 
 Este comando compila todos los archivos `.java` del proyecto y guarda los archivos compilados en la carpeta `out`.
 
 ### 2. Ejecutar
 
-```bash
-java -cp out EA3_Incorporando_UI_y_BD/Main
+Para probar con SQLite, guarda [el JAR de SQLite JDBC](https://github.com/xerial/sqlite-jdbc/releases/tag/3.54.1.0) en una carpeta `lib` dentro del repositorio. Para otro motor, coloca en `lib` su controlador JDBC y los JAR que requiera en tiempo de ejecución.
+
+En Windows PowerShell:
+
+```powershell
+java -cp "out;lib/*" EA3_Incorporando_UI_y_BD.Main
 ```
 
-## Interfaz gráfica
+En macOS o Linux:
 
-La aplicación utiliza Java Swing para construir su interfaz mediante componentes independientes:
+```bash
+java -cp "out:lib/*" EA3_Incorporando_UI_y_BD.Main
+```
 
-- **Main:** punto de entrada de la aplicación.
-- **JFrameMain:** ventana principal.
-- **JPanelForm:** formulario para introducir los datos de conexión.
-- **JPanelConection:** panel destinado a los controles de conexión y desconexión.
+### 3. Probar con SQLite
 
-## Estado del proyecto
-
-Proyecto en desarrollo. La interfaz gráfica se está construyendo por componentes, preparando la integración de la funcionalidad de conexión con la base de datos.
+Ingresa `jdbc:sqlite::memory:`, deja vacíos el usuario y la contraseña, y pulsa **Probar conexión**. El servicio cierra automáticamente la conexión al terminar la prueba. Si la prueba es exitosa, el botón **Desconectar** vuelve al formulario para iniciar otra prueba.

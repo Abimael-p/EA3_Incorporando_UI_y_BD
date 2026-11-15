@@ -1,8 +1,8 @@
-
 package EA3_Incorporando_UI_y_BD.iu.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class JPanelForm extends JPanel {
 
@@ -10,7 +10,6 @@ public class JPanelForm extends JPanel {
     private final JTextField txtUser;
     private final JPasswordField txtPassword;
     private final JButton btnConnect;
-    private final JLabel txtAreaResolver;
 
     public JPanelForm() {
         setLayout(new BorderLayout(10, 10));
@@ -22,11 +21,10 @@ public class JPanelForm extends JPanel {
         txtUrl = new JTextField();
         txtUser = new JTextField();
         txtPassword = new JPasswordField();
-        btnConnect = new JButton("Probar Conexión");
+        btnConnect = new JButton("Probar conexión");
 
         // Estilo visual del botón
         btnConnect.setBackground(new Color(41, 128, 185));
-        btnConnect.setForeground(Color.WHITE);
         btnConnect.setFocusPainted(false);
         btnConnect.setFont(new Font("Arial", Font.BOLD, 12));
         btnConnect.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -44,13 +42,32 @@ public class JPanelForm extends JPanel {
         panelForm.add(btnConnect);
 
         add(panelForm, BorderLayout.NORTH);
-
-        // Panel del área de resolución (Asi ban los mensajes por si un error ocurre)
-        txtAreaResolver = new JLabel("Resultado de la conexión:");
-        txtAreaResolver.setForeground(Color.BLUE);
-        txtAreaResolver.setHorizontalAlignment(SwingConstants.CENTER);
-        add(txtAreaResolver, BorderLayout.SOUTH);
-
     }
 
+    public void addProbarConexionListener(ActionListener listener) {
+        btnConnect.addActionListener(listener);
+    }
+
+    public String getUrl() {
+        return txtUrl.getText();
+    }
+
+    public String getUsuario() {
+        return txtUser.getText();
+    }
+
+    public char[] getPassword() {
+        return txtPassword.getPassword();
+    }
+
+    public void setCamposHabilitados(boolean habilitados) {
+        txtUrl.setEnabled(habilitados);
+        txtUser.setEnabled(habilitados);
+        txtPassword.setEnabled(habilitados);
+        btnConnect.setEnabled(habilitados);
+    }
+
+    public void limpiarPassword() {
+        txtPassword.setText("");
+    }
 }

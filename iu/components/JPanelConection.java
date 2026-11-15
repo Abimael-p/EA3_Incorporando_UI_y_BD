@@ -2,6 +2,7 @@ package EA3_Incorporando_UI_y_BD.iu.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class JPanelConection extends JPanel {
 
@@ -19,5 +20,9 @@ public class JPanelConection extends JPanel {
 
         // Añadimos el Button
         add(btnDesconected);
+    }
+
+    public void addDesconectarListener(ActionListener listener) {
+        btnDesconected.addActionListener(listener);
     }
 }
