@@ -63,13 +63,13 @@ Para probar con SQLite, guarda [el JAR de SQLite JDBC](https://github.com/xerial
 En Windows PowerShell:
 
 ```powershell
-java -cp "out;lib/*" EA3_Incorporando_IU_y_BD.Principal
+java -cp "out;lib/*" Principal
 ```
 
 En macOS o Linux:
 
 ```bash
-java -cp "out:lib/*" EA3_Incorporando_IU_y_BD.Principal
+java -cp "out:lib/*" Principal
 ```
 
 ### 3. Probar con SQLite
