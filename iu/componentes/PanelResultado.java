@@ -1,15 +1,15 @@
-package EA3_Incorporando_UI_y_BD.iu.components;
+package EA3_Incorporando_IU_y_BD.iu.componentes;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class JPanelResultado extends JPanel {
+public class PanelResultado extends JPanel {
     private static final Color VERDE = new Color(0, 112, 0);
     private static final Color ROJO = new Color(175, 0, 0);
 
     private final JTextArea texto = new JTextArea(3, 0);
 
-    public JPanelResultado() {
+    public PanelResultado() {
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(0, 15, 15, 15));
 
